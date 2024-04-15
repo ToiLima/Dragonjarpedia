@@ -1,7 +1,7 @@
 package DAO;
 
 //Importações
-import DTO.MonsterDTO;
+import DTO.EquipmentDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,20 +9,22 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-public class MonsterDAO {
+public class EquipmentDAO {
     //Métodos
-    public void registerMonster (MonsterDTO monsterDTO) {
-        String sql  = "INSERT INTO monster (name, description, family, removed) "
-                    + "VALUES (?, ?, ?, ?)";
+    public void registerEquipment (EquipmentDTO equipmentDTO) {
+        String sql  = "INSERT INTO equipment (name, description, price, howObtain, type, removed) "
+                                   + "VALUES (?, ?, ?, ?, ?, ?)";
       
         try (
             Connection c = ConexaoBanco.conectar();
             PreparedStatement ps = c.prepareStatement(sql);)
         {      
-            ps.setString(1, monsterDTO.getName());
-            ps.setString(2, monsterDTO.getDescription());
-            ps.setString(3, monsterDTO.getFamily());
-            ps.setBoolean(4, false);
+            ps.setString(1, equipmentDTO.getName());
+            ps.setString(2, equipmentDTO.getDescription());
+            ps.setFloat(3, equipmentDTO.getPrice());
+            ps.setString(4, equipmentDTO.getHowObtain());
+            ps.setString(5, equipmentDTO.getType());
+            ps.setBoolean(6, false);
             
             int rowsRegistered = ps.executeUpdate();
             if(rowsRegistered > 0) {
@@ -33,9 +35,9 @@ public class MonsterDAO {
         }
     }
     
-    public ArrayList<MonsterDTO> selectMonster () {
-        String sql  = "SELECT * FROM monster";
-        ArrayList<MonsterDTO> list = new ArrayList();
+    public ArrayList<EquipmentDTO> selectEquipment () {
+        String sql  = "SELECT * FROM equipment";
+        ArrayList<EquipmentDTO> list = new ArrayList();
         
         try (
             Connection c = ConexaoBanco.conectar();
@@ -43,35 +45,39 @@ public class MonsterDAO {
             ResultSet rs = ps.executeQuery();) 
         {
             while(rs.next()) {
-                MonsterDTO monsterDTO = new MonsterDTO();
+                EquipmentDTO equipmentDTO = new EquipmentDTO();
                 
-                monsterDTO.setId(rs.getInt("id"));
-                monsterDTO.setName(rs.getString("name"));
-                monsterDTO.setDescription(rs.getString("description"));
-                monsterDTO.setFamily(rs.getString("family"));
-                monsterDTO.setRemoved(rs.getBoolean("removed"));
+                equipmentDTO.setId(rs.getInt("id"));
+                equipmentDTO.setName(rs.getString("name"));
+                equipmentDTO.setDescription(rs.getString("description"));
+                equipmentDTO.setPrice(rs.getFloat("price"));
+                equipmentDTO.setHowObtain(rs.getString("howObtain"));
+                equipmentDTO.setType(rs.getString("type"));
+                equipmentDTO.setRemoved(rs.getBoolean("removed"));
                 
-                list.add(monsterDTO);
+                list.add(equipmentDTO);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao Selecionar "+ ex);
         } return list;
     }
     
-     public void updateMonster (MonsterDTO monsterDTO) {
-        String sql  = "UPDATE monster "
-                    + "SET name = ?, description = ?, family = ? "
+     public void updateEquipment (EquipmentDTO equipmentDTO) {
+        String sql  = "UPDATE equipment "
+                    + "SET name = ?, description = ?, price = ?, howObtain = ?, type = ? "
                     + "WHERE id = ?";
-        
+   
         try (
             Connection c = ConexaoBanco.conectar();
             PreparedStatement ps = c.prepareStatement(sql);) 
         {
             
-            ps.setString(1, monsterDTO.getName());
-            ps.setString(2, monsterDTO.getDescription());
-            ps.setString(3, monsterDTO.getFamily());
-            ps.setInt(4, monsterDTO.getId());
+            ps.setString(1, equipmentDTO.getName());
+            ps.setString(2, equipmentDTO.getDescription());
+            ps.setFloat(3, equipmentDTO.getPrice());
+            ps.setString(4, equipmentDTO.getHowObtain());
+            ps.setString(5, equipmentDTO.getType());
+            ps.setInt(6, equipmentDTO.getId());
             
            int rowsAtualizados = ps.executeUpdate();
             if(rowsAtualizados > 0) {
@@ -82,15 +88,15 @@ public class MonsterDAO {
         }
     }
      
-     public void removeMonster (MonsterDTO monsterDTO) {
-        String sql  = "DELETE FROM monster "
+     public void removeEquipment (EquipmentDTO equipmentDTO) {
+        String sql  = "DELETE FROM equipment "
                     + "WHERE id = ?";
         
         try (
             Connection c = ConexaoBanco.conectar();
             PreparedStatement ps = c.prepareStatement(sql);) 
         {
-            ps.setInt(1, monsterDTO.getId());
+            ps.setInt(1, equipmentDTO.getId());
             
             int rowsRemoved = ps.executeUpdate();
             if(rowsRemoved > 0) {
@@ -100,4 +106,5 @@ public class MonsterDAO {
             JOptionPane.showMessageDialog(null, "Erro ao remover "+ ex);
         }
     }
+    
 }

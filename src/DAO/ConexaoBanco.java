@@ -9,7 +9,7 @@ public class ConexaoBanco {
     static String usuario = "postgres";
     static String senha = "postgres"; //Lembre-se de verificar se o usuario e a senha estão corretos
     
-    public Connection conectar() {
+    public static Connection conectar() {
         try {
             return DriverManager.getConnection(conexao, usuario, senha);
         } catch (SQLException ex) {

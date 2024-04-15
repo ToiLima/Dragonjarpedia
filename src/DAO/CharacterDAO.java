@@ -16,7 +16,7 @@ public class CharacterDAO {
                                    + "VALUES (?, ?, ?, ?, ?, ?, ?)";
       
         try (
-            Connection c = new ConexaoBanco().conectar();
+            Connection c = ConexaoBanco.conectar();
             PreparedStatement ps = c.prepareStatement(sql);)
         {      
             ps.setString(1, characterDTO.getName());
@@ -41,7 +41,7 @@ public class CharacterDAO {
         ArrayList<CharacterDTO> list = new ArrayList();
         
         try (
-            Connection c = new ConexaoBanco().conectar();
+            Connection c = ConexaoBanco.conectar();
             PreparedStatement ps = c.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();) 
         {
@@ -70,7 +70,7 @@ public class CharacterDAO {
                     + "WHERE id = ?";
         
         try (
-            Connection c = new ConexaoBanco().conectar();
+            Connection c = ConexaoBanco.conectar();
             PreparedStatement ps = c.prepareStatement(sql);) 
         {
             
@@ -92,10 +92,11 @@ public class CharacterDAO {
     }
      
      public void removeCharacter (CharacterDTO characterDTO) {
-        String sql  = "DELETE FROM character WHERE id = ?";
+        String sql  = "DELETE FROM character "
+                    + "WHERE id = ?";
         
         try (
-            Connection c = new ConexaoBanco().conectar();
+            Connection c = ConexaoBanco.conectar();
             PreparedStatement ps = c.prepareStatement(sql);) 
         {
             ps.setInt(1, characterDTO.getId());
