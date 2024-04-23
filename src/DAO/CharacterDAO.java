@@ -12,11 +12,11 @@ import javax.swing.JOptionPane;
 public class CharacterDAO {
     //Métodos
     public void registerCharacter (CharacterDTO characterDTO) {
-        String sql  = "INSERT INTO character (name, description, gender, age, race, class, removed) "
-                                   + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql  = "INSERT INTO character (name, description, gender, age, race, class) "
+                                   + "VALUES (?, ?, ?, ?, ?, ?)";
       
         try (
-            Connection c = ConexaoBanco.conectar();
+            Connection c = DBConnection.connect();
             PreparedStatement ps = c.prepareStatement(sql);)
         {      
             ps.setString(1, characterDTO.getName());
@@ -25,14 +25,13 @@ public class CharacterDAO {
             ps.setString(4, characterDTO.getAge());
             ps.setString(5, characterDTO.getRace());
             ps.setString(6, characterDTO.getClasse());
-            ps.setBoolean(7, false);
             
             int rowsRegistered = ps.executeUpdate();
             if(rowsRegistered > 0) {
-                JOptionPane.showMessageDialog(null, "Sucesso no Cadastro!");
+                JOptionPane.showMessageDialog(null, "Sucesso no Cadastro de Personagem!");
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao Cadastrar "+ ex);
+            JOptionPane.showMessageDialog(null, "Erro ao Cadastrar Personagem "+ ex);
         }
     }
     
@@ -41,7 +40,7 @@ public class CharacterDAO {
         ArrayList<CharacterDTO> list = new ArrayList();
         
         try (
-            Connection c = ConexaoBanco.conectar();
+            Connection c = DBConnection.connect();
             PreparedStatement ps = c.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();) 
         {
@@ -55,7 +54,6 @@ public class CharacterDAO {
                 characterDTO.setAge(rs.getString("age"));
                 characterDTO.setRace(rs.getString("race"));
                 characterDTO.setClasse(rs.getString("class"));
-                characterDTO.setRemoved(rs.getBoolean("removed"));
                 
                 list.add(characterDTO);
             }
@@ -64,13 +62,13 @@ public class CharacterDAO {
         } return list;
     }
     
-     public void updateUsuario (CharacterDTO characterDTO) {
+     public void updateCharacter (CharacterDTO characterDTO) {
         String sql  = "UPDATE character "
                     + "SET name = ?, description = ?, gender = ?, age = ?, race = ?, class = ? "
                     + "WHERE id = ?";
         
         try (
-            Connection c = ConexaoBanco.conectar();
+            Connection c = DBConnection.connect();
             PreparedStatement ps = c.prepareStatement(sql);) 
         {
             
@@ -96,7 +94,7 @@ public class CharacterDAO {
                     + "WHERE id = ?";
         
         try (
-            Connection c = ConexaoBanco.conectar();
+            Connection c = DBConnection.connect();
             PreparedStatement ps = c.prepareStatement(sql);) 
         {
             ps.setInt(1, characterDTO.getId());

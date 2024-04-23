@@ -9,7 +9,25 @@ public class EquipmentDTO {
     private float price;
     private String howObtain;
     private String type;
-    private boolean removed;
+
+    public EquipmentDTO(Integer id, String name, String description, float price, String howObtain, String type) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.howObtain = howObtain;
+        this.type = type;
+    }
+    
+    public EquipmentDTO() {
+        this.id = null;
+        this.name = null;
+        this.description = null;
+        this.price = 0;
+        this.howObtain = null;
+        this.type = null;
+    }
+    
     
     //Métodos(Getter's e Setter's)
 
@@ -60,12 +78,4 @@ public class EquipmentDTO {
     public void setType(String type) {
         this.type = type;
     }
-
-    public boolean isRemoved() {
-        return removed;
-    }
-
-    public void setRemoved(boolean removed) {
-        this.removed = removed;
-    }    
 }

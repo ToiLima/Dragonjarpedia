@@ -12,17 +12,16 @@ import javax.swing.JOptionPane;
 public class MonsterDAO {
     //Métodos
     public void registerMonster (MonsterDTO monsterDTO) {
-        String sql  = "INSERT INTO monster (name, description, family, removed) "
-                    + "VALUES (?, ?, ?, ?)";
+        String sql  = "INSERT INTO monster (name, description, family) "
+                    + "VALUES (?, ?, ?)";
       
         try (
-            Connection c = ConexaoBanco.conectar();
+            Connection c = DBConnection.connect();
             PreparedStatement ps = c.prepareStatement(sql);)
         {      
             ps.setString(1, monsterDTO.getName());
             ps.setString(2, monsterDTO.getDescription());
             ps.setString(3, monsterDTO.getFamily());
-            ps.setBoolean(4, false);
             
             int rowsRegistered = ps.executeUpdate();
             if(rowsRegistered > 0) {
@@ -38,7 +37,7 @@ public class MonsterDAO {
         ArrayList<MonsterDTO> list = new ArrayList();
         
         try (
-            Connection c = ConexaoBanco.conectar();
+            Connection c = DBConnection.connect();
             PreparedStatement ps = c.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();) 
         {
@@ -49,7 +48,6 @@ public class MonsterDAO {
                 monsterDTO.setName(rs.getString("name"));
                 monsterDTO.setDescription(rs.getString("description"));
                 monsterDTO.setFamily(rs.getString("family"));
-                monsterDTO.setRemoved(rs.getBoolean("removed"));
                 
                 list.add(monsterDTO);
             }
@@ -64,7 +62,7 @@ public class MonsterDAO {
                     + "WHERE id = ?";
         
         try (
-            Connection c = ConexaoBanco.conectar();
+            Connection c = DBConnection.connect();
             PreparedStatement ps = c.prepareStatement(sql);) 
         {
             
@@ -87,7 +85,7 @@ public class MonsterDAO {
                     + "WHERE id = ?";
         
         try (
-            Connection c = ConexaoBanco.conectar();
+            Connection c = DBConnection.connect();
             PreparedStatement ps = c.prepareStatement(sql);) 
         {
             ps.setInt(1, monsterDTO.getId());

@@ -12,11 +12,11 @@ import javax.swing.JOptionPane;
 public class EquipmentDAO {
     //Métodos
     public void registerEquipment (EquipmentDTO equipmentDTO) {
-        String sql  = "INSERT INTO equipment (name, description, price, howObtain, type, removed) "
-                                   + "VALUES (?, ?, ?, ?, ?, ?)";
+        String sql  = "INSERT INTO equipment (name, description, price, howObtain, type) "
+                                   + "VALUES (?, ?, ?, ?, ?)";
       
         try (
-            Connection c = ConexaoBanco.conectar();
+            Connection c = DBConnection.connect();
             PreparedStatement ps = c.prepareStatement(sql);)
         {      
             ps.setString(1, equipmentDTO.getName());
@@ -24,8 +24,7 @@ public class EquipmentDAO {
             ps.setFloat(3, equipmentDTO.getPrice());
             ps.setString(4, equipmentDTO.getHowObtain());
             ps.setString(5, equipmentDTO.getType());
-            ps.setBoolean(6, false);
-            
+                  
             int rowsRegistered = ps.executeUpdate();
             if(rowsRegistered > 0) {
                 JOptionPane.showMessageDialog(null, "Sucesso no Cadastro!");
@@ -40,7 +39,7 @@ public class EquipmentDAO {
         ArrayList<EquipmentDTO> list = new ArrayList();
         
         try (
-            Connection c = ConexaoBanco.conectar();
+            Connection c = DBConnection.connect();
             PreparedStatement ps = c.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();) 
         {
@@ -53,7 +52,6 @@ public class EquipmentDAO {
                 equipmentDTO.setPrice(rs.getFloat("price"));
                 equipmentDTO.setHowObtain(rs.getString("howObtain"));
                 equipmentDTO.setType(rs.getString("type"));
-                equipmentDTO.setRemoved(rs.getBoolean("removed"));
                 
                 list.add(equipmentDTO);
             }
@@ -68,7 +66,7 @@ public class EquipmentDAO {
                     + "WHERE id = ?";
    
         try (
-            Connection c = ConexaoBanco.conectar();
+            Connection c = DBConnection.connect();
             PreparedStatement ps = c.prepareStatement(sql);) 
         {
             
@@ -93,7 +91,7 @@ public class EquipmentDAO {
                     + "WHERE id = ?";
         
         try (
-            Connection c = ConexaoBanco.conectar();
+            Connection c = DBConnection.connect();
             PreparedStatement ps = c.prepareStatement(sql);) 
         {
             ps.setInt(1, equipmentDTO.getId());

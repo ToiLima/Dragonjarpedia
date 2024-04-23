@@ -17,13 +17,14 @@ public class frmAbout extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
+        setLocationByPlatform(true);
         setMaximumSize(new java.awt.Dimension(475, 400));
         setMinimumSize(new java.awt.Dimension(475, 400));
         setName("Sobre"); // NOI18N
         setResizable(false);
         setSize(new java.awt.Dimension(475, 400));
 
-        lblSobre.setFont(new java.awt.Font("Yu Gothic", 0, 20)); // NOI18N
+        lblSobre.setFont(new java.awt.Font("Yu Gothic", 1, 20)); // NOI18N
         lblSobre.setText("Sobre");
 
         btnVoltar.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N

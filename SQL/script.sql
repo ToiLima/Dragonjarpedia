@@ -6,8 +6,7 @@ CREATE TABLE monster (
     id SERIAL PRIMARY KEY,
     name VARCHAR(299) NOT NULL,
     description TEXT NOT NULL,
-    family VARCHAR(299) NOT NULL,
-    removed BOOLEAN NOT NULL,
+    family VARCHAR(299) NOT NULL
 );
 
 CREATE TABLE character (
@@ -17,8 +16,7 @@ CREATE TABLE character (
     gender VARCHAR(299) NOT NULL,
     age VARCHAR(299) NOT NULL,
     race VARCHAR(299) NOT NULL,
-    class VARCHAR(299) NOT NULL,
-    removed BOOLEAN NOT NULL
+    class VARCHAR(299) NOT NULL
 );
 
 CREATE TABLE equipment (
@@ -27,6 +25,5 @@ CREATE TABLE equipment (
     description TEXT NOT NULL,
     price FLOAT NOT NULL,
     howObtain TEXT NOT NULL,
-    type VARCHAR(299) NOT NULL,
-    removed BOOLEAN NOT NULL
+    type VARCHAR(299) NOT NULL
 );

@@ -10,7 +10,27 @@ public class CharacterDTO {
     private String age;
     private String race;
     private String classe;
-    private boolean removed;
+
+    //Construtores
+    public CharacterDTO(Integer id, String name, String description, String gender, String age, String race, String classe) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.gender = gender;
+        this.age = age;
+        this.race = race;
+        this.classe = classe;
+    }
+    
+    public CharacterDTO() {
+        this.id = null;
+        this.name = null;
+        this.description = null;
+        this.gender = null;
+        this.age = null;
+        this.race = null;
+        this.classe = null;
+    }
     
     //Métodos(Getter's e Setter's)
 
@@ -70,11 +90,4 @@ public class CharacterDTO {
         this.classe = classe;
     }
 
-    public boolean isRemoved() {
-        return removed;
-    }
-
-    public void setRemoved(boolean removed) {
-        this.removed = removed;
-    }  
 }

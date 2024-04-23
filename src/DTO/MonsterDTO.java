@@ -7,8 +7,20 @@ public class MonsterDTO {
     private String name;
     private String description;
     private String family;
-    private boolean removed;
+
+    public MonsterDTO(Integer id, String name, String description, String family) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.family = family;
+    }
     
+    public MonsterDTO() {
+        this.id = null;
+        this.name = null;
+        this.description = null;
+        this.family = null;
+    }
     //Métodos(Getter's e Setter's)
 
     public Integer getId() {
@@ -43,11 +55,4 @@ public class MonsterDTO {
         this.family = family;
     }
 
-    public boolean getRemoved() {
-        return removed;
-    }
-
-    public void setRemoved(boolean removed) {
-        this.removed = removed;
-    }
 }

@@ -12,9 +12,9 @@ public class frmMain extends javax.swing.JFrame {
     private void initComponents() {
 
         lblTitle = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnMonster = new javax.swing.JButton();
+        btnCharacter = new javax.swing.JButton();
+        btnEquipment = new javax.swing.JButton();
         btnAbout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -40,14 +40,29 @@ public class frmMain extends javax.swing.JFrame {
         lblTitle.setPreferredSize(new java.awt.Dimension(375, 60));
         lblTitle.setVerifyInputWhenFocusTarget(false);
 
-        jButton1.setFont(new java.awt.Font("Yu Gothic", 0, 20)); // NOI18N
-        jButton1.setText("Monstros");
+        btnMonster.setFont(new java.awt.Font("Yu Gothic", 0, 20)); // NOI18N
+        btnMonster.setText("Monstros");
+        btnMonster.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMonsterActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Yu Gothic", 0, 20)); // NOI18N
-        jButton2.setText("Personagens");
+        btnCharacter.setFont(new java.awt.Font("Yu Gothic", 0, 20)); // NOI18N
+        btnCharacter.setText("Personagens");
+        btnCharacter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCharacterActionPerformed(evt);
+            }
+        });
 
-        jButton3.setFont(new java.awt.Font("Yu Gothic", 0, 20)); // NOI18N
-        jButton3.setText("Equipamento");
+        btnEquipment.setFont(new java.awt.Font("Yu Gothic", 0, 20)); // NOI18N
+        btnEquipment.setText("Equipamento");
+        btnEquipment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEquipmentActionPerformed(evt);
+            }
+        });
 
         btnAbout.setFont(new java.awt.Font("Yu Gothic", 0, 20)); // NOI18N
         btnAbout.setText("Sobre");
@@ -66,13 +81,13 @@ public class frmMain extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(btnAbout, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnMonster, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCharacter, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEquipment, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(67, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAbout, jButton1, jButton2, jButton3});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAbout, btnCharacter, btnEquipment, btnMonster});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -80,11 +95,11 @@ public class frmMain extends javax.swing.JFrame {
                 .addGap(51, 51, 51)
                 .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(btnMonster)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(btnCharacter)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(btnEquipment)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAbout)
                 .addContainerGap(105, Short.MAX_VALUE))
@@ -98,8 +113,23 @@ public class frmMain extends javax.swing.JFrame {
 
     private void btnAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAboutActionPerformed
         this.setVisible(false);
-        new frmHelp().setVisible(true);
+        new frmAbout().setVisible(true);
     }//GEN-LAST:event_btnAboutActionPerformed
+
+    private void btnCharacterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCharacterActionPerformed
+        this.setVisible(false);
+        new frmCharacter().setVisible(true);
+    }//GEN-LAST:event_btnCharacterActionPerformed
+
+    private void btnEquipmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEquipmentActionPerformed
+        this.setVisible(false);
+        new frmEquipment().setVisible(true);
+    }//GEN-LAST:event_btnEquipmentActionPerformed
+
+    private void btnMonsterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMonsterActionPerformed
+        this.setVisible(false);
+        new frmMonster().setVisible(true);
+    }//GEN-LAST:event_btnMonsterActionPerformed
 
     public static void main(String args[]) {
         
@@ -112,9 +142,9 @@ public class frmMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbout;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnCharacter;
+    private javax.swing.JButton btnEquipment;
+    private javax.swing.JButton btnMonster;
     private javax.swing.JLabel lblTitle;
     // End of variables declaration//GEN-END:variables
 }

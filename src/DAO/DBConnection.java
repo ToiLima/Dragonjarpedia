@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class ConexaoBanco {
-    static String conexao = "jdbc:postgres://localhost:5432/dragonjarpedia";
+public class DBConnection {
+    static String conexao = "jdbc:postgresql://localhost:5432/dragonjarpedia";
     static String usuario = "postgres";
-    static String senha = "postgres"; //Lembre-se de verificar se o usuario e a senha estão corretos
+    static String senha = "160206toi"; //Lembre-se de verificar se o usuario e a senha estão corretos
     
-    public static Connection conectar() {
+    public static Connection connect() {
         try {
             return DriverManager.getConnection(conexao, usuario, senha);
         } catch (SQLException ex) {
