@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class DBConnection {
     static String conexao = "jdbc:postgresql://localhost:5432/dragonjarpedia";
     static String usuario = "postgres";
-    static String senha = "160206toi"; //Lembre-se de verificar se o usuario e a senha estão corretos
+    static String senha = "postgres"; //Lembre-se de verificar se o usuario e a senha estão corretos
     
     public static Connection connect() {
         try {

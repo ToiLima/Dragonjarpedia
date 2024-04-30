@@ -32,6 +32,29 @@ public class CharacterController {
         return table;
     }
     
+    public static DefaultTableModel listValues(DefaultTableModel table, String name) {
+        try {
+            CharacterDAO characterDAO = new CharacterDAO(); //Estância o DAO de personagem
+            ArrayList<CharacterDTO> list = characterDAO.selectCharacter(name); //Estância uma lista do DTO de personagem
+            table.setNumRows(0); //Configura o tamanho da tabela 
+            
+            for(int num = 0; num < list.size(); num++) {
+                table.addRow(new Object[]{
+                    list.get(num).getId(),
+                    list.get(num).getName(),
+                    list.get(num).getDescription(),
+                    list.get(num).getGender(),
+                    list.get(num).getAge(),
+                    list.get(num).getRace(),
+                    list.get(num).getClasse()
+                });
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao Listar Personagens"+ ex);
+        }
+        return table;
+    }
+    
     public static void register(String name, String description, String gender, String age, String race, String classe){
         try {
             if(!"".equals(name) && !"".equals(description) && !"".equals(gender) && !"".equals(age) && !"".equals(race) && !"".equals(classe)){

@@ -31,29 +31,26 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="lblId" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtId" alignment="0" pref="177" max="32767" attributes="0"/>
-                                  <Component id="lblName" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtName" alignment="0" pref="177" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="lblDescription" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtDescription" alignment="0" pref="177" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="lblFamily" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtFamily" alignment="0" pref="177" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Component id="lblMonster" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblMonster" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="lblId" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtId" alignment="0" pref="177" max="32767" attributes="0"/>
+                          <Component id="lblName" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtName" alignment="0" pref="177" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <Component id="btnSearchName" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="lblDescription" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtDescription" alignment="0" min="-2" pref="177" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="lblFamily" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtFamily" alignment="0" min="-2" pref="177" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -71,26 +68,25 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblMonster" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="lblId" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="txtId" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="lblId" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblName" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtId" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtName" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="lblDescription" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="lblName" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtName" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="lblDescription" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtDescription" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtDescription" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnSearchName" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <Component id="lblFamily" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtFamily" min="-2" max="-2" attributes="0"/>
@@ -182,9 +178,8 @@
           <Font name="Yu Gothic" size="12" style="0"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value=""/>
-        <Property name="actionCommand" type="java.lang.String" value="&lt;Not Set&gt;"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Text Cursor"/>
+          <Color id="Cursor Padr&#xe3;o"/>
         </Property>
       </Properties>
     </Component>
@@ -344,5 +339,13 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="btnSearchName">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&gt;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSearchNameActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

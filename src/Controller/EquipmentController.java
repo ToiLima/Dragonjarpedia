@@ -6,6 +6,7 @@ import java.awt.HeadlessException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 public class EquipmentController {
     /*Lista os valores disponíveis no banco para a tabela do aplicativo*/
@@ -13,6 +14,28 @@ public class EquipmentController {
         try {
             EquipmentDAO equipmentDAO = new EquipmentDAO(); //Estância o DAO de equipamento
             ArrayList<EquipmentDTO> list = equipmentDAO.selectEquipment(); //Estância uma lista do DTO de equipamento
+            table.setNumRows(0); //Configura o tamanho da tabela 
+            
+            for(int num = 0; num < list.size(); num++) {
+                table.addRow(new Object[]{
+                    list.get(num).getId(),
+                    list.get(num).getName(),
+                    list.get(num).getDescription(),
+                    list.get(num).getPrice(),
+                    list.get(num).getHowObtain(),
+                    list.get(num).getType()
+                });
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao Listar Personagens"+ ex);
+        }
+        return table;
+    }
+    
+    public static TableModel listValues(DefaultTableModel table, String name) {
+         try {
+            EquipmentDAO equipmentDAO = new EquipmentDAO(); //Estância o DAO de equipamento
+            ArrayList<EquipmentDTO> list = equipmentDAO.selectEquipment(name); //Estância uma lista do DTO de equipamento
             table.setNumRows(0); //Configura o tamanho da tabela 
             
             for(int num = 0; num < list.size(); num++) {
@@ -88,4 +111,5 @@ public class EquipmentController {
     private static boolean isNumeric(String str) {
         return str != null && str.matches("[0-9.]+");
     }
+
 }

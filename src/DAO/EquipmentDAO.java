@@ -60,7 +60,37 @@ public class EquipmentDAO {
         } return list;
     }
     
-     public void updateEquipment (EquipmentDTO equipmentDTO) {
+    public ArrayList<EquipmentDTO> selectEquipment(String name) {
+        String sql  = "SELECT * FROM equipment WHERE name LIKE CONCAT('%',?,'%')";
+        ArrayList<EquipmentDTO> list = new ArrayList();
+        
+        try (
+            Connection c = DBConnection.connect();
+            PreparedStatement ps = c.prepareStatement(sql);) 
+        {
+            ps.setString(1, name);
+
+            try(ResultSet rs = ps.executeQuery();){
+                while(rs.next()) {
+                    EquipmentDTO equipmentDTO = new EquipmentDTO();
+
+                    equipmentDTO.setId(rs.getInt("id"));
+                    equipmentDTO.setName(rs.getString("name"));
+                    equipmentDTO.setDescription(rs.getString("description"));
+                    equipmentDTO.setPrice(rs.getFloat("price"));
+                    equipmentDTO.setHowObtain(rs.getString("howObtain"));
+                    equipmentDTO.setType(rs.getString("type"));
+
+                    list.add(equipmentDTO);
+                }
+            }    
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao Selecionar "+ ex);
+        } return list;
+    }
+    
+    
+    public void updateEquipment (EquipmentDTO equipmentDTO) {
         String sql  = "UPDATE equipment "
                     + "SET name = ?, description = ?, price = ?, howObtain = ?, type = ? "
                     + "WHERE id = ?";
@@ -104,5 +134,4 @@ public class EquipmentDAO {
             JOptionPane.showMessageDialog(null, "Erro ao remover "+ ex);
         }
     }
-    
 }

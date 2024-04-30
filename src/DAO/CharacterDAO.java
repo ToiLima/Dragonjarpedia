@@ -62,7 +62,39 @@ public class CharacterDAO {
         } return list;
     }
     
-     public void updateCharacter (CharacterDTO characterDTO) {
+    public ArrayList<CharacterDTO> selectCharacter(String name) {
+        String sql  = "SELECT * FROM character WHERE name LIKE CONCAT('%',?,'%')";
+        ArrayList<CharacterDTO> list = new ArrayList();
+       
+        try (   
+            Connection c = DBConnection.connect();
+            PreparedStatement ps = c.prepareStatement(sql);)
+        {
+            ps.setString(1, name);
+            
+            try (ResultSet rs = ps.executeQuery();) 
+            {
+                while(rs.next()) {
+                    CharacterDTO characterDTO = new CharacterDTO();
+
+                    characterDTO.setId(rs.getInt("id"));
+                    characterDTO.setName(rs.getString("name"));
+                    characterDTO.setDescription(rs.getString("description"));
+                    characterDTO.setGender(rs.getString("gender"));
+                    characterDTO.setAge(rs.getString("age"));
+                    characterDTO.setRace(rs.getString("race"));
+                    characterDTO.setClasse(rs.getString("class"));
+
+                    list.add(characterDTO);
+                }
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao Selecionar "+ ex);
+        }return list;
+        
+    }
+    
+    public void updateCharacter (CharacterDTO characterDTO) {
         String sql  = "UPDATE character "
                     + "SET name = ?, description = ?, gender = ?, age = ?, race = ?, class = ? "
                     + "WHERE id = ?";
@@ -107,4 +139,7 @@ public class CharacterDAO {
             JOptionPane.showMessageDialog(null, "Erro ao remover "+ ex);
         }
     }
+
+   
+
 }

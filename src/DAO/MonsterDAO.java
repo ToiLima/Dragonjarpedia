@@ -56,7 +56,34 @@ public class MonsterDAO {
         } return list;
     }
     
-     public void updateMonster (MonsterDTO monsterDTO) {
+    public ArrayList<MonsterDTO> selectMonster(String name) {
+        String sql  = "SELECT * FROM monster WHERE name LIKE CONCAT('%',?,'%')";
+        ArrayList<MonsterDTO> list = new ArrayList();
+        
+        try (
+            Connection c = DBConnection.connect();
+            PreparedStatement ps = c.prepareStatement(sql);) 
+        {
+            ps.setString(1, name);
+            
+            try(ResultSet rs = ps.executeQuery();){
+                while(rs.next()) {
+                    MonsterDTO monsterDTO = new MonsterDTO();
+
+                    monsterDTO.setId(rs.getInt("id"));
+                    monsterDTO.setName(rs.getString("name"));
+                    monsterDTO.setDescription(rs.getString("description"));
+                    monsterDTO.setFamily(rs.getString("family"));
+
+                    list.add(monsterDTO);
+                }
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao Selecionar "+ ex);
+        } return list;
+    }
+    
+    public void updateMonster (MonsterDTO monsterDTO) {
         String sql  = "UPDATE monster "
                     + "SET name = ?, description = ?, family = ? "
                     + "WHERE id = ?";

@@ -39,10 +39,10 @@ public class frmCharacter extends javax.swing.JFrame {
         btnGoBack = new javax.swing.JButton();
         btnRegister = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
+        btnSearchName = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFont(new java.awt.Font("Yu Gothic", 0, 10)); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1000, 750));
         setResizable(false);
 
         tblCharacter.setModel(new javax.swing.table.DefaultTableModel(
@@ -117,8 +117,7 @@ public class frmCharacter extends javax.swing.JFrame {
         txtId.setEditable(false);
         txtId.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         txtId.setToolTipText("");
-        txtId.setActionCommand("<Not Set>");
-        txtId.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtId.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lblId.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
         lblId.setText("ID");
@@ -237,6 +236,13 @@ public class frmCharacter extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        btnSearchName.setText(">");
+        btnSearchName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchNameActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -247,6 +253,7 @@ public class frmCharacter extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPersonagem)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(lblId)
@@ -255,6 +262,8 @@ public class frmCharacter extends javax.swing.JFrame {
                                     .addComponent(txtAge, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                                     .addComponent(lblName)
                                     .addComponent(txtId))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnSearchName)
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblRace)
@@ -266,8 +275,7 @@ public class frmCharacter extends javax.swing.JFrame {
                                     .addComponent(lblClass)
                                     .addComponent(txtClass, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblGender)
-                                    .addComponent(txtGender, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(lblPersonagem))
+                                    .addComponent(txtGender, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -291,7 +299,9 @@ public class frmCharacter extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblName)
                                 .addGap(32, 32, 32))
-                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnSearchName)))
                         .addGap(18, 18, 18)
                         .addComponent(lblAge)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -335,7 +345,8 @@ public class frmCharacter extends javax.swing.JFrame {
         for(int i = 0; i< getContentPane().getComponentCount(); i++){
             Component c = getContentPane().getComponent(i);
             
-            if (c instanceof JTextField field){
+            if (c instanceof JTextField){
+                JTextField field = (JTextField) c;
                 field.setText(null);
             }
         }
@@ -406,6 +417,13 @@ public class frmCharacter extends javax.swing.JFrame {
         this.wipeOutField();
     }//GEN-LAST:event_btnCleanActionPerformed
 
+    private void btnSearchNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchNameActionPerformed
+        String name;
+        name = txtName.getText();
+        
+        this.tblCharacter.setModel(Controller.CharacterController.listValues((DefaultTableModel) this.tblCharacter.getModel(), name)); 
+    }//GEN-LAST:event_btnSearchNameActionPerformed
+
     /**/
     
     public static void main(String args[]) {
@@ -421,6 +439,7 @@ public class frmCharacter extends javax.swing.JFrame {
     private javax.swing.JButton btnGoBack;
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnRemove;
+    private javax.swing.JButton btnSearchName;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JScrollPane jScrollPane1;

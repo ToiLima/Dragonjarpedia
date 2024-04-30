@@ -6,6 +6,7 @@ import java.awt.HeadlessException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 public class MonsterController {
     /*Lista os valores disponíveis no banco para a tabela do aplicativo*/
@@ -13,6 +14,26 @@ public class MonsterController {
         try {
             MonsterDAO monsterDAO = new MonsterDAO(); //Estância o DAO de monstro
             ArrayList<MonsterDTO> list = monsterDAO.selectMonster(); //Estância uma lista do DTO de monstro
+            table.setNumRows(0); //Configura o tamanho da tabela 
+            
+            for(int num = 0; num < list.size(); num++) {
+                table.addRow(new Object[]{
+                    list.get(num).getId(),
+                    list.get(num).getName(),
+                    list.get(num).getDescription(),
+                    list.get(num).getFamily()
+                });
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao Listar Monstros"+ ex);
+        }
+        return table;
+    }
+    
+    public static TableModel listValues(DefaultTableModel table, String name) {
+       try {
+            MonsterDAO monsterDAO = new MonsterDAO(); //Estância o DAO de monstro
+            ArrayList<MonsterDTO> list = monsterDAO.selectMonster(name); //Estância uma lista do DTO de monstro
             table.setNumRows(0); //Configura o tamanho da tabela 
             
             for(int num = 0; num < list.size(); num++) {
@@ -83,5 +104,7 @@ public class MonsterController {
     private static boolean isNumeric(String str) {
         return str != null && str.matches("[0-9.]+");
     }
+
+    
 
 }
